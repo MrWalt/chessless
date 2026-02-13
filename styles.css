@@ -1,0 +1,64 @@
+:root {
+  --color-background: #dee2e6;
+  --color-white: #f8f9fa;
+  --color-black: #343a40;
+
+  --board-dimensions: 768px;
+
+  --squares-per-row-col: 8;
+}
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Bungee", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  height: 100dvh;
+  background-color: var(--color-background);
+  color: var(--color-black);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chessboard {
+  width: var(--board-dimensions);
+  height: var(--board-dimensions);
+  box-shadow: 0 0 0 1px var(--color-black);
+
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.square {
+  width: calc(var(--board-dimensions) / var(--squares-per-row-col));
+  height: calc(var(--board-dimensions) / var(--squares-per-row-col));
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.square.dark {
+  background-color: var(--color-black);
+}
+
+.square.light {
+  background-color: var(--color-white);
+}
+
+.piece {
+  width: 75%;
+  display: block;
+}

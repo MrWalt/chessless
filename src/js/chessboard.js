@@ -1,6 +1,7 @@
 "use strict";
 
 import {
+  getChessSquare,
   NUMBER_OF_COLUMNS_ON_BOARD,
   NUMBER_OF_ROWS_ON_BOARD,
   pieces,
@@ -20,7 +21,13 @@ export function initChessboard() {
 
       const shouldAlternate = (column + 1) % 2 !== 0;
 
-      const square = `<div class='square ${shouldAlternate ? alternateColor : color}' data-square='${column},${row}'></div>`;
+      const square = getChessSquare(
+        color,
+        alternateColor,
+        shouldAlternate,
+        column,
+        row,
+      );
       chessBoard.insertAdjacentHTML("beforeend", square);
     }
   }
@@ -39,8 +46,8 @@ function setDarkPieces() {
         column[0] = `${piecesColors.dark}-${pieces.rook}`;
         column[1] = `${piecesColors.dark}-${pieces.knight}`;
         column[2] = `${piecesColors.dark}-${pieces.bishop}`;
-        column[3] = `${piecesColors.dark}-${pieces.king}`;
-        column[4] = `${piecesColors.dark}-${pieces.queen}`;
+        column[3] = `${piecesColors.dark}-${pieces.queen}`;
+        column[4] = `${piecesColors.dark}-${pieces.king}`;
         column[5] = `${piecesColors.dark}-${pieces.bishop}`;
         column[6] = `${piecesColors.dark}-${pieces.knight}`;
         column[7] = `${piecesColors.dark}-${pieces.rook}`;
@@ -62,8 +69,8 @@ function setLightPieces() {
         column[0] = `${piecesColors.light}-${pieces.rook}`;
         column[1] = `${piecesColors.light}-${pieces.knight}`;
         column[2] = `${piecesColors.light}-${pieces.bishop}`;
-        column[3] = `${piecesColors.light}-${pieces.king}`;
-        column[4] = `${piecesColors.light}-${pieces.queen}`;
+        column[3] = `${piecesColors.light}-${pieces.queen}`;
+        column[4] = `${piecesColors.light}-${pieces.king}`;
         column[5] = `${piecesColors.light}-${pieces.bishop}`;
         column[6] = `${piecesColors.light}-${pieces.knight}`;
         column[7] = `${piecesColors.light}-${pieces.rook}`;

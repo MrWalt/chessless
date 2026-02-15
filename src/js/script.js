@@ -5,5 +5,5 @@ import { renderPieces } from "./piecesView.js";
 
 initChessboard();
 initPieces();
-const squares = document.querySelectorAll(".square");
+export const squares = document.querySelectorAll(".square");
 renderPieces(squares);

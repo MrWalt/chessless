@@ -2,6 +2,7 @@
   --color-background: #dee2e6;
   --color-white: #f8f9fa;
   --color-black: #343a40;
+  --color-green: #d8f5a2;
 
   --board-dimensions: 768px;
 
@@ -61,4 +62,19 @@ body {
 .piece {
   width: 75%;
   display: block;
+}
+
+.available__move {
+  width: 32px;
+  height: 32px;
+
+  border-radius: 100%;
+
+  background-color: var(--color-green);
+
+  position: relative;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }

@@ -21,3 +21,19 @@ export const piecesColors = {
   dark: "dark",
   light: "light",
 };
+
+export const availableMoveDiv = `<div class='available__move'></div>`;
+
+export function getImagePieceDiv(color, piece) {
+  return `<img alt='${color} ${piece}' class='piece cursor-pointer' data-color='${color}' data-piece='${piece}' src='./src/public/${color}-${piece}.png' />`;
+}
+
+export function getChessSquare(
+  color,
+  alternateColor,
+  shouldAlternate,
+  column,
+  row,
+) {
+  return `<div class='square ${shouldAlternate ? color : alternateColor}' data-square='${column},${row}'></div>`;
+}

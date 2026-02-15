@@ -1,8 +1,8 @@
 :root {
   --color-background: #dee2e6;
-  --color-white: #f8f9fa;
-  --color-black: #343a40;
-  --color-green: #d8f5a2;
+  --color-white: #f1f3f5;
+  --color-black: #495057;
+  --color-green: #69db7c;
 
   --board-dimensions: 768px;
 
@@ -49,6 +49,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  position: relative;
 }
 
 .square.black {
@@ -60,21 +62,53 @@ body {
 }
 
 .piece {
-  width: 75%;
+  width: 90%;
   display: block;
 }
 
 .available__move {
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.available__move::before {
+  content: "";
+
   width: 32px;
   height: 32px;
 
-  border-radius: 100%;
-
   background-color: var(--color-green);
 
-  position: relative;
+  border-radius: 100%;
+  animation: popIn 0.2s ease-in-out;
+
+  transition: all 0.2s;
+}
+
+.available__move:hover::before {
+  transform: scale(1.4);
 }
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }

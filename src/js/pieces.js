@@ -1,10 +1,34 @@
-import { pieces } from "./config.js";
+import { colors, pieces } from "./config.js";
 
 export class Pawn {
   constructor(color) {
     this.color = color;
     this.piece = pieces.pawn;
     this.firstMove = true;
+  }
+  usedFirstMove() {
+    this.firstMove = false;
+  }
+  getMoves(currentPos) {
+    const [y, x] = currentPos;
+
+    if (this.color === colors.white) {
+      if (this.firstMove)
+        return [
+          [Number(y) - 1, Number(x)],
+          [Number(y) - 2, Number(x)],
+        ];
+
+      return [[Number(y) - 1, Number(x)]];
+    }
+
+    if (this.firstMove)
+      return [
+        [Number(y) + 1, Number(x)],
+        [Number(y) + 2, Number(x)],
+      ];
+
+    return [[Number(y) + 1, Number(x)]];
   }
 }
 

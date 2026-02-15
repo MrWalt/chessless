@@ -17,10 +17,10 @@ export const pieces = {
   none: "empty",
 };
 
-export const availableMoveDiv = `<div class='available__move'></div>`;
+export const availableMoveDiv = `<div class='available__move cursor-pointer'></div>`;
 
 export function pieceDiv(color, piece) {
-  return `<img alt='${color} ${piece}' class='piece cursor-pointer' data-color='${color}' data-piece='${piece}' src='./src/public/${color}-${piece}.png' />`;
+  return `<img alt='${color} ${piece}' class='piece cursor-pointer' data-color='${color}' data-piece='${piece}' src='./src/public/${color}-${piece}.svg' />`;
 }
 
 export function squareDiv(color, alternateColor, shouldAlternate, column, row) {

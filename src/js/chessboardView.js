@@ -1,18 +1,21 @@
 import {
+  availableMoveDiv,
   colors,
   NUMBER_OF_COLUMNS_ON_BOARD,
   NUMBER_OF_ROWS_ON_BOARD,
   pieceDiv,
   pieces,
   squareDiv,
-} from "../config.js";
-import { Bishop, King, Knight, Pawn, Queen, Rook } from "../pieces.js";
-import { getPieceFromPos, getPosFromSquare } from "../utils.js";
+} from "./config.js";
+import { Bishop, King, Knight, Pawn, Queen, Rook } from "./pieces.js";
+import { getPieceFromPos, getPosFromSquare } from "./utils.js";
 
 class Chessboard {
   constructor() {
     this.chessboard = document.querySelector(".chessboard");
     this.allSquares = null;
+    this.allPieces = null;
+    this.availableMoves = null;
   }
   renderChessboard() {
     for (let column = 0; column < NUMBER_OF_COLUMNS_ON_BOARD; column++) {
@@ -33,7 +36,7 @@ class Chessboard {
       }
     }
 
-    this.allSquares = document.querySelectorAll(".square");
+    this.allSquares = Array.from(document.querySelectorAll(".square"));
   }
   setBlackPieces(chessboardData) {
     chessboardData.map((column, columnIndex) => {
@@ -101,13 +104,52 @@ class Chessboard {
 
       square.insertAdjacentHTML("afterbegin", pieceDiv(color, piece));
     });
+
+    this.allPieces = Array.from(document.querySelectorAll(".piece"));
   }
-  renderAll(chessboardData) {
+  removePieces() {
+    if (this.allPieces) this.allPieces.forEach((piece) => piece.remove());
+  }
+  initialRender(chessboardData, clickCallback) {
     this.renderChessboard();
     this.setBlackPieces(chessboardData);
     this.setWhitePieces(chessboardData);
     this.setEmptySpaces(chessboardData);
     this.renderPieces(chessboardData);
+    this.setAllPieces(clickCallback);
+  }
+  renderAvailableMoves(positionsToRender, clickCallback) {
+    if (this.availableMoves) this.removeAvailableMoves();
+
+    positionsToRender.forEach((position) =>
+      this.allSquares
+        .find((square) => square.dataset.square === position.join(","))
+        .insertAdjacentHTML("beforeend", availableMoveDiv),
+    );
+
+    this.availableMoves = Array.from(
+      document.querySelectorAll(".available__move"),
+    );
+
+    this.availableMoves.forEach((move) =>
+      move.addEventListener("click", clickCallback),
+    );
+  }
+  removeAvailableMoves() {
+    if (this.availableMoves)
+      this.availableMoves.forEach((move) => move.remove());
+  }
+  rerender(callback) {
+    this.removeAvailableMoves();
+    this.removePieces();
+    this.renderPieces();
+    this.setAllPieces(callback);
+  }
+  setAllPieces(callback) {
+    this.allPieces = Array.from(document.querySelectorAll(".piece"));
+    this.allPieces.forEach((piece) =>
+      piece.addEventListener("click", callback),
+    );
   }
 }
 

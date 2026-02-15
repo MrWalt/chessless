@@ -5,6 +5,7 @@ export default class Game {
   constructor() {
     this.chessboardData = [[], [], [], [], [], [], [], []];
     this.selectedPiece = null;
+    this.selectedPiecePos = null;
     this.currentToPlay = colors.white;
   }
   startGame(startGameCallback) {
@@ -14,10 +15,10 @@ export default class Game {
     this.currentToPlay =
       this.currentToPlay === colors.white ? colors.black : colors.white;
   }
-  setChessboardData(newData) {
-    this.chessboardData = newData;
-  }
   setSelectedPiece(piece) {
     this.selectedPiece = piece;
+  }
+  setSelectedPiecePos(pos) {
+    this.selectedPiecePos = pos;
   }
 }

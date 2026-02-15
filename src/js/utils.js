@@ -9,3 +9,7 @@ export function getPieceFromPos(y, x) {
   if (game.chessboardData[y][x].piece === pieces.none) return pieces.none;
   return game.chessboardData[y][x];
 }
+
+export function getPosFromPiece(piece) {
+  return piece.closest(".square").dataset.square.split(",");
+}

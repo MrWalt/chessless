@@ -1,9 +1,13 @@
 import { availableMoveDiv, getImagePieceDiv, pieces } from "./config.js";
 import { analyzePieceMoveSet } from "./controller.js";
-import { chessboardData } from "./model.js";
+import {
+  chessboardData,
+  currentToPlay,
+  selectedPiece,
+  setSelectedPiece,
+  switchPlayer,
+} from "./model.js";
 import { squares } from "./script.js";
-
-let selectedPiece;
 
 export function renderPieces(squares) {
   squares.forEach((square) => {
@@ -20,7 +24,7 @@ export function renderPieces(squares) {
       const availableMoves = analyzePieceMoveSet(square);
       removeAvailableMoves();
       renderAvailableMoves(availableMoves, squares);
-      selectedPiece = square;
+      setSelectedPiece(square);
     });
   });
 }
@@ -66,9 +70,11 @@ export function movePiece(move) {
   const [oldY, oldX] = selectedPiece.dataset.square.split(",");
   const piece = chessboardData[oldY][oldX];
 
+  if (!piece.includes(currentToPlay)) return;
   chessboardData[oldY][oldX] = "empty";
   chessboardData[newY][newX] = piece;
 
   removePieces();
   renderPieces(squares);
+  switchPlayer();
 }

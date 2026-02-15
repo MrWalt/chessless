@@ -7,6 +7,11 @@ export const squareColors = {
   light: "dark",
 };
 
+export const players = {
+  white: "light",
+  black: "dark",
+};
+
 export const pieces = {
   pawn: "pawn",
   bishop: "bishop",

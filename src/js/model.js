@@ -2,19 +2,22 @@
 
 import { players } from "./config.js";
 
-export const chessboardData = [[], [], [], [], [], [], [], []];
-export let selectedPiece;
-export let currentToPlay = players.white;
-
-export function switchPlayer() {
-  if (currentToPlay === players.white) {
-    currentToPlay = players.black;
-    return;
+class Game {
+  constructor() {
+    this.chessboardData = [[], [], [], [], [], [], [], []];
+    this.selectedPiece = null;
+    this.currentToPlay = players.white;
   }
-
-  currentToPlay = players.white;
+  switchPlayer() {
+    this.currentToPlay =
+      this.currentToPlay === players.white ? players.black : players.white;
+  }
+  setChessboardData(newData) {
+    this.chessboardData = newData;
+  }
+  setSelectedPiece(piece) {
+    this.selectedPiece = piece;
+  }
 }
 
-export function setSelectedPiece(piece) {
-  selectedPiece = piece;
-}
+export const game = new Game();

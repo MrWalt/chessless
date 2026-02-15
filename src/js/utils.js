@@ -6,6 +6,6 @@ export function getPosFromSquare(square) {
 }
 
 export function getPieceFromPos(y, x) {
-  if (game.chessboardData[y][x] === pieces.none) return pieces.none;
-  return game.chessboardData[y][x].split("-");
+  if (game.chessboardData[y][x].piece === pieces.none) return pieces.none;
+  return game.chessboardData[y][x];
 }

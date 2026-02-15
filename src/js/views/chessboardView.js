@@ -6,6 +6,7 @@ import {
   pieces,
   squareDiv,
 } from "../config.js";
+import { Bishop, King, Knight, Pawn, Queen, Rook } from "../pieces.js";
 import { getPieceFromPos, getPosFromSquare } from "../utils.js";
 
 class Chessboard {
@@ -38,19 +39,19 @@ class Chessboard {
     chessboardData.map((column, columnIndex) => {
       for (let row = 0; row < 2; row++) {
         if (columnIndex === 0) {
-          column[0] = `${colors.black}-${pieces.rook}`;
-          column[1] = `${colors.black}-${pieces.knight}`;
-          column[2] = `${colors.black}-${pieces.bishop}`;
-          column[3] = `${colors.black}-${pieces.queen}`;
-          column[4] = `${colors.black}-${pieces.king}`;
-          column[5] = `${colors.black}-${pieces.bishop}`;
-          column[6] = `${colors.black}-${pieces.knight}`;
-          column[7] = `${colors.black}-${pieces.rook}`;
+          column[0] = new Rook(colors.black);
+          column[1] = new Knight(colors.black);
+          column[2] = new Bishop(colors.black);
+          column[3] = new Queen(colors.black);
+          column[4] = new King(colors.black);
+          column[5] = new Bishop(colors.black);
+          column[6] = new Knight(colors.black);
+          column[7] = new Rook(colors.black);
         }
 
         if (columnIndex === 1) {
           for (let index = 0; index < NUMBER_OF_ROWS_ON_BOARD; index++) {
-            column[index] = `${colors.black}-${pieces.pawn}`;
+            column[index] = new Pawn(colors.black);
           }
         }
       }
@@ -60,19 +61,19 @@ class Chessboard {
     chessboardData.map((column, columnIndex) => {
       for (let row = 0; row < NUMBER_OF_ROWS_ON_BOARD; row++) {
         if (columnIndex === 7) {
-          column[0] = `${colors.white}-${pieces.rook}`;
-          column[1] = `${colors.white}-${pieces.knight}`;
-          column[2] = `${colors.white}-${pieces.bishop}`;
-          column[3] = `${colors.white}-${pieces.queen}`;
-          column[4] = `${colors.white}-${pieces.king}`;
-          column[5] = `${colors.white}-${pieces.bishop}`;
-          column[6] = `${colors.white}-${pieces.knight}`;
-          column[7] = `${colors.white}-${pieces.rook}`;
+          column[0] = new Rook(colors.white);
+          column[1] = new Knight(colors.white);
+          column[2] = new Bishop(colors.white);
+          column[3] = new Queen(colors.white);
+          column[4] = new King(colors.white);
+          column[5] = new Bishop(colors.white);
+          column[6] = new Knight(colors.white);
+          column[7] = new Rook(colors.white);
         }
 
         if (columnIndex === 6) {
           for (let index = 0; index < NUMBER_OF_ROWS_ON_BOARD; index++) {
-            column[index] = `${colors.white}-${pieces.pawn}`;
+            column[index] = new Pawn(colors.white);
           }
         }
       }
@@ -87,7 +88,7 @@ class Chessboard {
         columnIndex !== 7
       ) {
         for (let index = 0; index < NUMBER_OF_COLUMNS_ON_BOARD; index++) {
-          column[index] = pieces.none;
+          column[index] = { piece: pieces.none };
         }
       }
     });
@@ -96,7 +97,7 @@ class Chessboard {
     this.allSquares.forEach((square) => {
       const [y, x] = getPosFromSquare(square);
       if (getPieceFromPos(y, x) === pieces.none) return;
-      const [color, piece] = getPieceFromPos(y, x);
+      const { color, piece } = getPieceFromPos(y, x);
 
       square.insertAdjacentHTML("afterbegin", pieceDiv(color, piece));
     });

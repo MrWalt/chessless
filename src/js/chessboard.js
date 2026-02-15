@@ -12,26 +12,7 @@ import { chessboardData } from "./model.js";
 
 const chessBoard = document.querySelector(".chessboard");
 
-export function initChessboard() {
-  for (let column = 0; column < NUMBER_OF_COLUMNS_ON_BOARD; column++) {
-    for (let row = 0; row < NUMBER_OF_ROWS_ON_BOARD; row++) {
-      const color = row % 2 !== 0 ? squareColors.light : squareColors.dark;
-      const alternateColor =
-        row % 2 === 0 ? squareColors.light : squareColors.dark;
-
-      const shouldAlternate = (column + 1) % 2 !== 0;
-
-      const square = getChessSquare(
-        color,
-        alternateColor,
-        shouldAlternate,
-        column,
-        row,
-      );
-      chessBoard.insertAdjacentHTML("beforeend", square);
-    }
-  }
-}
+export function initChessboard() {}
 
 export function initPieces() {
   setDarkPieces();

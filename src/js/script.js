@@ -1,9 +1,5 @@
 "use strict";
 
-import { initChessboard, initPieces } from "./chessboard.js";
-import { renderPieces } from "./piecesView.js";
+import { startGame } from "./controller.js";
 
-initChessboard();
-initPieces();
-export const squares = document.querySelectorAll(".square");
-renderPieces(squares);
+startGame();

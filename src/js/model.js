@@ -1,16 +1,18 @@
 "use strict";
 
-import { players } from "./config.js";
-
-class Game {
+import { colors } from "./config.js";
+export default class Game {
   constructor() {
     this.chessboardData = [[], [], [], [], [], [], [], []];
     this.selectedPiece = null;
-    this.currentToPlay = players.white;
+    this.currentToPlay = colors.white;
+  }
+  startGame(startGameCallback) {
+    startGameCallback();
   }
   switchPlayer() {
     this.currentToPlay =
-      this.currentToPlay === players.white ? players.black : players.white;
+      this.currentToPlay === colors.white ? colors.black : colors.white;
   }
   setChessboardData(newData) {
     this.chessboardData = newData;
@@ -19,5 +21,3 @@ class Game {
     this.selectedPiece = piece;
   }
 }
-
-export const game = new Game();

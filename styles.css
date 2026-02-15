@@ -51,11 +51,11 @@ body {
   justify-content: center;
 }
 
-.square.dark {
+.square.black {
   background-color: var(--color-black);
 }
 
-.square.light {
+.square.white {
   background-color: var(--color-white);
 }
 

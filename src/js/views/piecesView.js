@@ -1,13 +1,13 @@
-import { availableMoveDiv, getImagePieceDiv, pieces } from "./config.js";
-import { analyzePieceMoveSet } from "./controller.js";
+import { availableMoveDiv, getImagePieceDiv, pieces } from "../config.js";
+import { analyzePieceMoveSet } from "../controller.js";
 import {
   chessboardData,
   currentToPlay,
   selectedPiece,
   setSelectedPiece,
   switchPlayer,
-} from "./model.js";
-import { squares } from "./script.js";
+} from "../model.js";
+import { squares } from "../script.js";
 
 export function renderPieces(squares) {
   squares.forEach((square) => {
